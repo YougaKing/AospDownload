@@ -3,14 +3,14 @@ import os
 from subprocess import call
 
 # downloaded source path
-tag = "android-9.0.0_r41"
+tag = "android-7.1.1_r58"
 mirror = "https://aosp.tuna.tsinghua.edu.cn/"
 origin = "https://android.googlesource.com/"
-rootdir = "D:/Android/Aosp/" + tag
+rootdir = "D:/Android/Aosp/"
 
 # git program path
 git = "C:/Program Files/Git/bin/git.exe"
-dom = xml.dom.minidom.parse("D:/Android/Aosp/" + tag + "/manifest/default.xml")
+dom = xml.dom.minidom.parse("D:/Android/Aosp/manifest/default.xml")
 root = dom.documentElement
 
 prefix = git + " clone -b " + tag + " --single-branch " + mirror
@@ -22,7 +22,7 @@ native = "platform/frameworks/native"
 core = "platform/system/core"
 bionic = "platform/bionic"
 libcore = "platform/libcore"
-# art = "platform/art"
+art = "platform/art"
 msm = "kernel/msm"
 
 if not os.path.exists(rootdir):
@@ -46,11 +46,11 @@ for node in root.getElementsByTagName("project"):
                         print "name != bionic-->" + name
                     if name != libcore:
                         print "name != libcore-->" + name
-                        # if name != art:
-                        #     print "name != art-->" + name
-                        if name != msm:
-                            print "name != msm-->" + name
-                            continue
+                        if name != art:
+                            print "name != art-->" + name
+                            if name != msm:
+                                print "name != msm-->" + name
+                                continue
     print "final-->" + name
 
     if last != -1:
