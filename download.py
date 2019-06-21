@@ -3,7 +3,6 @@ import os
 from subprocess import call
 
 # downloaded source path
-tag = "android-7.1.1_r58"
 mirror = "https://aosp.tuna.tsinghua.edu.cn/"
 origin = "https://android.googlesource.com/"
 rootdir = "D:/Android/Aosp/"
@@ -13,7 +12,7 @@ git = "C:/Program Files/Git/bin/git.exe"
 dom = xml.dom.minidom.parse("D:/Android/Aosp/manifest/default.xml")
 root = dom.documentElement
 
-prefix = git + " clone -b " + tag + " --single-branch " + mirror
+prefix = git + " clone " + mirror
 suffix = ".git"
 
 Launcher2 = "platform/packages/apps/Launcher2"
